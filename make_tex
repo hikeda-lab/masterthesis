@@ -1,0 +1,44 @@
+#! /bin/sh
+
+cp spike_sorting.bib spike_sorting2.bib
+cp fig.tex fig2.tex
+cp fig_houhou.tex fig2_houhou.tex
+cp fig_simu_1.tex fig2_simu_1.tex
+cp fig_simu_2.tex fig2_simu_2.tex
+cp fig_simu_3.tex fig2_simu_3.tex
+cp fig_simu_4.tex fig2_simu_4.tex
+cp fig_simu_5.tex fig2_simu_5.tex
+
+cp tb_houhou.tex tb_houhou2.tex
+cp tb_kekka.tex tb_kekka2.tex
+cp tb_simu.tex tb_simu2.tex
+
+
+cp fig_huroku.tex fig2_huroku.tex
+
+nkf -msdos spike_sorting.bib > spike_sorting2.bib
+nkf -msdos fig.tex > fig2.tex
+nkf -msdos fig_houhou.tex > fig2_houhou.tex
+nkf -msdos fig_simu_1.tex > fig2_simu_1.tex
+nkf -msdos fig_simu_2.tex > fig2_simu_2.tex
+nkf -msdos fig_simu_3.tex > fig2_simu_3.tex
+nkf -msdos fig_simu_4.tex > fig2_simu_4.tex
+nkf -msdos fig_simu_5.tex > fig2_simu_5.tex
+
+nkf -msdos fig_huroku.tex > fig2_huroku.tex
+nkf -msdos  tb_houhou.tex > tb_houhou2.tex
+nkf -msdos  tb_kekka.tex > tb_kekka2.tex
+nkf -msdos  tb_simu.tex > tb_simu2.tex
+
+
+platex master_thesis
+platex master_thesis
+platex master_thesis
+
+jbibtex master_thesis
+out2uni master_thesis
+
+platex master_thesis
+platex master_thesis
+
+dvipdfmx master_thesis.dvi

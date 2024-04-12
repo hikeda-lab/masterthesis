@@ -1,0 +1,718 @@
+%
+%シミュレーション1
+%
+
+\begin{table}
+\caption{simulation 1: 結果}
+\label{tb:simu_1}
+\centering
+\subfigure[正解]{
+   \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[1]  &[2] &[3] \\ \hline
+   {1} &35 &0 &0 \\
+   {2} &0 &35 &0 \\
+   {3} &0 &0 &30 \\
+   \hline
+   \end{tabular}
+ }
+\hspace{11pt}
+\subfigure[ソーティング後]{
+  \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &35 &0 &0 \\
+   {2} &0 &34 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+ }
+\end{table}
+
+
+
+%
+%\begin{table}
+%\begin{tabular}{ccc}
+%  \begin{minipage}[t]{0.45\textwidth}
+%   \caption{sim1: true spike labels}
+%   \label{tb_kekka_simu_1_trueans}
+%   \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[1]  &[2] &[3] \\ \hline
+%   {1} &35 &0 &0 \\
+%   {2} &0 &35 &0 \\
+%   {3} &0 &0 &30 \\
+%   \hline
+%   \end{tabular}
+%  \end{minipage}
+%\hfill
+%  \begin{minipage}[t]{0.45\textwidth}
+%   \caption{sim1: spike sorted labels}
+%   \label{tb_kekka_simu_1_k-means}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[3]  &[1] &[2] \\ \hline
+%   {1} &35 &0 &0 \\
+%   {2} &0 &34 &1 \\
+%   {3} &0 &0 &30\\
+%   \hline
+%  \end{tabular}
+%  \end{minipage}
+% \end{tabular}
+%\hfill
+%  \begin{minipage}[t]{0.33\textwidth}
+%   \caption{列入れ替え}
+%   \label{tb_kekka_simu_1_k-means_change}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[3]  &[1] &[2] \\ \hline
+%   {1} &35 &0 &0 \\
+%   {2} &0 &34 &1 \\
+%   {3} &0 &00 &30\\
+%   \hline
+%  \end{tabular}
+%  \end{minipage}
+% \end{tabular}
+%\end{table}
+
+
+
+%
+%シミュレーション2
+%
+
+\begin{table}
+\caption{simulation 2: 結果}
+\label{tb:simu_2}
+\centering
+\subfigure[正解]{
+   \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[1]  &[2] &[3] \\ \hline
+   {1} &35 &0 &0 \\
+   {2} &0 &35 &0 \\
+   {3} &0 &0 &30 \\
+   \hline
+   \end{tabular}
+ }
+\hspace{11pt}
+\subfigure[ソーティング後]{
+  \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &33 &1 &1 \\
+   {2} &11 &23 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+ }
+\end{table}
+
+%\begin{table}
+%\begin{tabular}{cc}
+%  \begin{minipage}[t]{0.45\textwidth}
+%   \caption{sim2: true spike labels}
+%   \label{tb_kekka_simu_2_trueans}
+%   \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[1]  &[2] &[3] \\ \hline
+%   {1} &35 &0 &0 \\
+%   {2} &0 &35 &0 \\
+%   {3} &0 &0 &30 \\
+%   \hline
+%   \end{tabular}
+%  \end{minipage}
+%\hfill
+%  \begin{minipage}[t]{0.45\textwidth}
+%   \caption{sim2: spike sorted labels}
+%   \label{tb_kekka_simu_2_k-means}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[1]  &[2] &[3] \\ \hline
+%   {1} &33 &1 &1 \\
+%   {2} &11 &23 &1 \\
+%   {3} &0 &0 &30 \\
+%   \hline
+%  \end{tabular}
+%  \end{minipage}
+% \end{tabular}
+%\end{table}
+
+%
+%
+%\section{結果　シミュレーション３}
+%
+%
+%
+\begin{table}
+    \caption{simulation 3: 結果}
+ \label{tb:simu_3a}
+%\centering
+ \subfigure[各スパイクのソーティング前後のラベル]{
+ \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}  
+  \hline
+  % &スパイクラベル\\　\hline
+  　&1& 2& 3& 4& 5& 6& 7& 8& 9& 10& 11& 12& 13& 14& 15& 16& 17& 18& 19& 20 \\ \hline
+  ソーティング前(初期値)&2& 1& 2& 1& 1& 2& 3& 2& 2& 1& 1& 3& 2& 1& 3& 3& 2& 1& 2& 2 \\ \hline
+  ソーティング後&2&1& 2& 2& 1& 2& 3& 1& 3& 1& 1& 3& 3& 1& 3& 3& 2& 1& 2& 2 \\  \hline
+ \end{tabular}
+ }
+ \subfigure[正解]{
+ %\caption{sim3:true spike labels}
+ \begin{tabular}{|c|c|c|c|}
+  \hline
+  &[1] &[2] &[3] \\ \hline
+  {1} &12 &0 &0 \\
+  {2} &0 &7 &0 \\
+  {3} &0 &0 &1 \\
+  \hline
+ \end{tabular}
+ }
+%\hspace{11pt}
+ \subfigure[初期値]{
+ %\caption{sim3:random spike labels}
+ \begin{tabular}{|c|c|c|c|}
+  \hline
+  &[2]  &[3] &[1] \\ \hline
+  {1} &5 &3 &4 \\
+  {2} &4 &0 &3 \\
+  {3} &0 &1 &0 \\
+  \hline
+ \end{tabular}
+ }
+ \subfigure[ソーティング後]{
+ %\caption{sim3:spike sorted labels}
+ \begin{tabular}{|c|c|c|c|}
+  \hline
+  &[2]  &[3] &[1] \\ \hline 
+  {1} &10 &2 &0 \\
+  {2} &0 &4 &3 \\
+  {3} &0 &0 &1 \\
+  \hline
+ \end{tabular}
+ }
+\end{table}%
+
+
+
+%\begin{table}
+% \caption{sim3:result}
+% \label{tb:kekka_simu_3}
+% \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}  
+%  \hline
+%% &スパイクラベル\\　\hline
+%　&1& 2& 3& 4& 5& 6& 7& 8& 9& 10& 11& 12& 13& 14& 15& 16& 17& 18& 19& 20 \\ \hline
+% ソーティング前(初期値)&2& 1& 2& 1& 1& 2& 3& 2& 2& 1& 1& 3& 2& 1& 3& 3& 2& 1& 2& 2 \\ \hline
+% ソーティング後&2&1& 2& 2& 1& 2& 3& 1& 3& 1& 1& 3& 3& 1& 3& 3& 2& 1& 2& 2 \\  \hline
+% \end{tabular}
+%\end{table}%
+
+%\begin{table}
+%%\caption{sim3: true spike labels}
+%%\label{tb_kekka_simu_3_label}
+% \begin{tabular}{cc}
+%  \begin{minipage}[t]{0.45\textwidth}
+%   \caption{sim3:true spike labels}
+%   \label{tb_kekka_simu_3_label}
+%   \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[1]  &[2] &[3] \\ \hline
+%   {1} &12 &0 &0 \\
+%   {2} &0 &7 &0 \\
+%   {3} &0 &0 &1 \\
+%   \hline
+%   \end{tabular}
+%  \end{minipage}
+%\hfill
+%  \begin{minipage}[t]{0.45\textwidth}
+%   \caption{sim3:random spike labels}
+%   \label{tb_kekka_simu_3_random_label}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[2]  &[3] &[1] \\ \hline
+%   {1} &5 &3 &4 \\
+%   {2} &4 &0 &3 \\
+%   {3} &0 &1 &0 \\
+%   \hline
+%  \end{tabular}
+%  \end{minipage}
+%\hfill
+%\\
+%  \begin{minipage}[t]{0.95\textwidth}
+%   \caption{sim3:spike sorted labels}
+%   \label{tb_kekka_simu_3_sorted_label}
+%   \begin{tabular}{|c|c|c|c|}
+%    \hline
+%    &[2]  &[3] &[1] \\ \hline 
+%    {1} &10 &2 &0 \\
+%    {2} &0 &4 &3 \\
+%    {3} &0 &0 &1 \\
+%    \hline
+%   \end{tabular}
+%  \end{minipage}
+%
+% 
+% \end{tabular}
+%\end{table}%
+
+%
+%
+%\section{結果　シミュレーション 4}
+%
+%
+
+\begin{table}
+\caption{simulation 4: 結果}
+\label{tb:simu_4}
+\centering
+\subfigure[正解]{
+   \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[1]  &[2] &[3] \\ \hline
+   {1} &35 &0 &0 \\
+   {2} &0 &35 &0 \\
+   {3} &0 &0 &30 \\
+   \hline
+   \end{tabular}
+ }
+\hspace{11pt}
+\subfigure[初期値]{
+  \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[1] &[2] &[3] \\ \hline
+   {1} &33 &1 &1 \\
+   {2} &11 &23 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+}
+%\hspace{11pt}
+\subfigure[ソーティング後]{
+  \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[1]  &[2] &[3] \\ \hline
+   {1} &29 &1 &5 \\
+   {2} &7 &22 &6 \\
+   {3} &11 &17 &3\\
+   \hline
+  \end{tabular}
+ }
+\end{table}
+
+\clearpage
+
+%\begin{table}
+%%\caption{結果:シミュレーション4}
+%%\label{tb_kekka_simu_4_label}
+% \begin{tabular}{cc}
+%  \begin{minipage}[t]{0.45\textwidth}
+%   \caption{simu4:true spike labels}
+%   \label{tb_kekka_simu_4_1}
+%   \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[1]  &[2] &[3] \\ \hline
+%   {1} &35 &0 &0 \\
+%   {2} &0 &35 &0 \\
+%   {3} &0 &0 &30 \\
+%   \hline
+%   \end{tabular}
+% \end{minipage}
+%\hfill
+%  \begin{minipage}[t]{0.45\textwidth}
+%   \caption{simu2:spike sorted labels}
+%   \label{tb_kekka_simu_4_2}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[1]  &[2] &[3] \\ \hline
+%   {1} &33 &1 &1 \\
+%   {2} &11 &23 &1 \\
+%   {3} &0 &0 &30 \\
+%   \hline
+%  \end{tabular}
+%  \end{minipage}
+%\hfill
+%\\
+%  \begin{minipage}[t]{0.95\textwidth}
+%   \caption{simu4:spike sorted labels}
+%   \label{tb_kekka_simu_4_3}
+%   \begin{tabular}{|c|c|c|c|}
+%    \hline
+%    &[1]  &[2] &[3] \\ \hline 
+%    {1} &29 &1 &5 \\
+%    {2} &7 &22 &6 \\
+%    {3} &10 &17 &3 \\
+%    \hline
+%   \end{tabular}
+%  \end{minipage}
+%
+% \end{tabular}
+%\end{table}%
+
+
+%
+%for ppt
+%
+
+%%simu 1
+%\begin{table}[htbp]
+% \begin{center}
+%  \caption{configuration: simulation 1}
+%  \label{ppt:tb_simu_1}
+% \begin{tabular}{|c|c|c|c|c|c|}
+%  \hline
+%  &テンプレート& スパイクの数&$\delta$&$\lambda$&平均ISI(s)  \\ \hline
+%  ニューロン１&rkcy00ep050.001.ev&35&0.8&100&0.150 \\ \hline
+%  ニューロン２&0318aep005.011.ev&35&0.8&100&0.170  \\ \hline
+%  ニューロン３&05-9Cep031.011.ev&30&0.8&150&0.200    \\ \hline
+% \end{tabular} 
+%\end{center}
+%\end{table}%
+%
+%%simu 2
+%\begin{table}[htbp]
+% \begin{center}
+%  \caption{configuration: simulation 2}
+%  \label{ppt:tb_simu_2}
+% \begin{tabular}{|c|c|c|c|c|}
+%  \hline
+%  & スパイクの数&$\delta$&$\lambda$&平均ISI(s)  \\ \hline
+%  ニューロン１&35&0.5&180&0.020  \\ \hline
+%  ニューロン２&35&0.5&150&0.035   \\ \hline
+%  ニューロン３&30&0.5&150&0.200    \\ \hline
+% \end{tabular} 
+%\end{center}
+%\end{table}%
+%
+%%
+%%
+%
+%%simu 1
+%\begin{table}[htbp]
+% \begin{center}
+%  \caption{configuration: simulation 1}
+%  \label{ppt:tb_simu_1}
+% \begin{tabular}{|c|c|c|c|c|}
+%  \hline
+%  & スパイクの数&$\delta$&$\lambda$&平均ISI(s)  \\ \hline
+%  ニューロン１&35&0.8&100&0.150 \\ \hline
+%  ニューロン２&35&0.8&100&0.170  \\ \hline
+%  ニューロン３&30&0.8&150&0.200    \\ \hline
+% \end{tabular} 
+%\end{center}
+%\end{table}%
+%
+%%simu 1
+%\begin{table}[htbp]
+% \begin{center}
+%  \caption{configuration: simulation 1}
+%  \label{ppt:tb_simu_1}
+% \begin{tabular}{|c|c|c|c|c|}
+%  \hline
+%  &スパイクの数&平均ISI(s)  \\ \hline
+%  ニューロン１&35&0.150 \\ \hline
+%  ニューロン２&35&0.170  \\ \hline
+%  ニューロン３&30&0.200    \\ \hline
+% \end{tabular} 
+%\end{center}
+%\end{table}%
+%
+%\begin{table}[htbp]
+% \caption{simu5:spike sorted labels 30}
+% \label{tb_kekka_simu_5_1}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[1]  &[2] &[3] \\ \hline
+%   {1} &31 &3 &1 \\
+%   {2} &5 &29 &1 \\
+%   {3} &0 &0 &30 \\
+%   \hline
+%  \end{tabular}
+%\end{table}
+%
+%\clearpage
+
+
+%
+%
+%シミュレーション5
+%
+%
+\begin{table}[t]
+\caption{simulation 5: 結果}
+\label{tb:simu_5}
+\subfigure[正解]{
+   \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[1]  &[2] &[3] \\ \hline
+   {1} &35 &0 &0 \\
+   {2} &0 &35 &0 \\
+   {3} &0 &0 &30 \\
+   \hline
+   \end{tabular}
+ }
+\subfigure[初期値]{
+  \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[1] &[2] &[3] \\ \hline
+   {1} &33 &1 &1 \\
+   {2} &11 &23 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+}
+  \subfigure[91回目]{
+   %\caption{sim1: true spike labels}
+   %\label{tb_kekka_simu_1_trueans}
+   \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &31 &3 &1 \\
+   {2} &15 &19 &1 \\
+   {3} &0 &0 &30 \\
+   \hline
+   \end{tabular}
+}
+  \subfigure[92回目]{
+   %\caption{sim1: spike sorted labels}
+   %\label{tb_kekka_simu_1_k-means}
+  \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &31 &3 &1 \\
+   {2} &12 &22 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+ }
+\subfigure[93回目]{
+ \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &31 &3 &1 \\
+   {2} &15 &19 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+}
+\subfigure[94回目]{
+ \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &31 &3 &1 \\
+   {2} &14 &20 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+}
+\subfigure[95回目]{
+ \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &31 &3 &1 \\
+   {2} &6 &28 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+}
+\subfigure[96回目]{
+  \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &31 &3 &1 \\
+   {2} &14 &20 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+}
+\subfigure[97回目]{
+  \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &31 &3 &1 \\
+   {2} &9 &25 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+}
+\hspace{2em}
+\subfigure[98回目]{
+  \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &31 &3 &1 \\
+   {2} &1 &33 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+ }
+\hspace{2em}
+\subfigure[99回目]{
+  \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &31 &3 &1 \\
+   {2} &15 &19 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+}
+\hspace{2em}
+\subfigure[100回目]{
+  \begin{tabular}{|c|c|c|c|}
+   \hline
+   &[3]  &[1] &[2] \\ \hline
+   {1} &31 &3 &1 \\
+   {2} &6 &28 &1 \\
+   {3} &0 &0 &30\\
+   \hline
+  \end{tabular}
+%\caption{}
+}
+
+\end{table}
+
+スパイクソーティングの結果を行列を用いて表した。
+行に正解のスパイクラベルを、列にソーティングの結果割り当てられた
+スパイクラベルをおいた。
+例えば、実際のスパイクラベルが1であるスパイクが、ソーティングの結果[2]
+とされれば、1行2列にカウントされる。
+各シミュレーションの結果について、左端から、仮に全問正解したときの行列、
+次に初期値のスパイクラベルの行列、ソーティング後の結果のスパイクラベルの行列をおいた。
+シミュレーション5については、各スパイクのスパイクラベルの選択を91回行った状態での
+スパイクラベルの結果から、100回行った最終のスパイクラベルの結果までの行列をおいた。
+
+
+%\begin{table}[t]
+%\begin{tabular}{ccccc}
+%  \begin{minipage}[t]{0.2\textwidth}
+%   %\caption{sim1: true spike labels}
+%   %\label{tb_kekka_simu_1_trueans}
+%   \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[1]  &[2] &[3] \\ \hline
+%   {1} &31 &3 &1 \\
+%   {2} &15 &19 &1 \\
+%   {3} &0 &0 &30 \\
+%   \hline
+%   \end{tabular}
+%  \end{minipage}
+%\hfill
+%  \begin{minipage}[t]{0.2\textwidth}
+%   %\caption{sim1: spike sorted labels}
+%   %\label{tb_kekka_simu_1_k-means}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[3]  &[1] &[2] \\ \hline
+%   {1} &31 &3 &1 \\
+%   {2} &12 &22 &1 \\
+%   {3} &0 &0 &30\\
+%   \hline
+%  \end{tabular}
+%  \end{minipage}
+%
+% \begin{minipage}[t]{0.2\textwidth}
+% \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[3]  &[1] &[2] \\ \hline
+%   {1} &31 &3 &1 \\
+%   {2} &15 &19 &1 \\
+%   {3} &0 &0 &30\\
+%   \hline
+%  \end{tabular}
+% \end{minipage}
+%
+%
+%\begin{minipage}[t]{0.2\textwidth}
+% \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[3]  &[1] &[2] \\ \hline
+%   {1} &31 &3 &1 \\
+%   {2} &14 &20 &1 \\
+%   {3} &0 &0 &30\\
+%   \hline
+%  \end{tabular}
+% \end{minipage}
+%
+%\begin{minipage}[t]{0.2\textwidth}
+% \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[3]  &[1] &[2] \\ \hline
+%   {1} &31 &3 &1 \\
+%   {2} &6 &28 &1 \\
+%   {3} &0 &0 &30\\
+%   \hline
+%  \end{tabular}
+% \end{minipage}
+%
+%\\
+%
+%\\
+%
+% \begin{minipage}[t]{0.2\textwidth}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[3]  &[1] &[2] \\ \hline
+%   {1} &31 &3 &1 \\
+%   {2} &14 &20 &1 \\
+%   {3} &0 &0 &30\\
+%   \hline
+%  \end{tabular}
+% \end{minipage}
+%
+%
+% 
+%
+% \begin{minipage}[t]{0.2\textwidth}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[3]  &[1] &[2] \\ \hline
+%   {1} &31 &3 &1 \\
+%   {2} &9 &25 &1 \\
+%   {3} &0 &0 &30\\
+%   \hline
+%  \end{tabular}
+% \end{minipage}
+%
+%
+%
+%\begin{minipage}[t]{0.2\textwidth}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[3]  &[1] &[2] \\ \hline
+%   {1} &31 &3 &1 \\
+%   {2} &1 &33 &1 \\
+%   {3} &0 &0 &30\\
+%   \hline
+%  \end{tabular}
+% \end{minipage}
+%
+% \begin{minipage}[t]{0.2\textwidth}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[3]  &[1] &[2] \\ \hline
+%   {1} &31 &3 &1 \\
+%   {2} &15 &19 &1 \\
+%   {3} &0 &0 &30\\
+%   \hline
+%  \end{tabular}
+% \end{minipage}
+%
+%
+%
+%
+% \begin{minipage}[h]{0.2\textwidth}
+%  \begin{tabular}{|c|c|c|c|}
+%   \hline
+%   &[3]  &[1] &[2] \\ \hline
+%   {1} &31 &3 &1 \\
+%   {2} &6 &28 &1 \\
+%   {3} &0 &0 &30\\
+%   \hline
+%  \end{tabular}
+% \end{minipage}
+%
+%
+%
+% \end{tabular}
+%\end{table}

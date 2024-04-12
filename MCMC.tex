@@ -1,0 +1,144 @@
+\section{ベイズ統計とマルコフ連鎖モンテカルロ法}
+\label{sec_MCMC}
+この節を書くために文献\cite{MCMC_2005},\cite{finance_MCMC_2003}を参考にした。
+
+\subsection{ベイズ統計とベイズの定理}
+\label{sec:Bayes_Stat}
+ベイズ統計では、不確実な現象の背後にあるパラメータ$\mathbf{\theta}$の確率分布である事前分布を仮定した上で、確率分布の性質を決定するパラメータの値を観測された
+データに基づいて事後分布を推測する。
+事後分布は、ベイズの定理により事前分布と尤度関数から計算する事ができる。
+$\mathbf{x}$がパラメータ$\mathbf{\theta}$もつ、ある確率分布
+$X(\mathbf{\theta})$から生成された観測データであるとする。
+$\mathbf{x} \sim X(\mathbf{\theta})$
+となる観測値$\mathbf{x}$　
+未知のパラメータ$\theta$に関する情報を事前情報といい、その確率分布を事前分布と呼ぶ。
+その確率密度関数をと呼び、$\pi(\mathbf{\theta})$で表す。
+尤度関数
+$f(\mathbf{x}|\mathbf{\theta})$
+観測値$\mathbf{x}$を得た後の$\mathbf{\mu}$の分布を事後分布と呼び、その確率密度関数
+$\pi(\mathbf{\theta}|\mathbf{x})$を事後確率密度関数と呼ぶ。
+
+
+
+ベイズの定理によると、事後確率密度関数は、事前確率密度関数と尤度関数から次のように計算できる。
+\begin{eqnarray}
+ \pi(\theta|x) &=& \frac{\pi(x,\theta)}{\int P(x,\theta) d \theta} \\
+               &\propto& f(\mathbf{x}|\theta)\pi(\theta)
+\end{eqnarray}
+となる。これにより、曖昧な（分散の大きい）事前分布からも、限定された（分散の小さい）事後分布を計算する事ができる。
+
+
+この事後分布からのサンプルを生成するために、マルコフ連鎖モンテカルロ法が用いられる。
+
+\subsection{マルコフ連鎖モンテカルロ法(MCMC)}
+マルコフ連鎖モンテカルロ法(MCMC)を用いると、一様分布や正規分布だけからで
+はなく、様々な多変量な確率分布からサンプルを生成する事ができる。
+ベイズ統計では,マルコフ連鎖モンテカ
+ルロ法が用いることによって、
+事後分布$P(\theta|x)$からの乱数を生成する事ができる。
+\par
+あるシステムがあって、そのシステムは様々な状態をとるとする。
+マルコフ連鎖とは、
+一般にあるシステムの状態が$\mathbf{x}$となっていて、次の状態が直前の状態$\mathbf{x'}$
+のみに依存して決定するシステムのことである。
+状態$\mathbf{x}$から次の状態$\mathbf{x'}$に移る事を$\mathbf{x} \to \mathbf{x'}$
+と書き、その確率(遷移確率)を$\pi(\mathbf{x} \to \mathbf{x}')$と書く事にする。
+マルコフ連鎖は、正則条件呼ばれる条件が満たされたときに、マルコフ連鎖の反復を繰り返して
+いくと、サンプルが定常分布に収束することが知られている。
+%ここで、定常分布とは、
+%\begin{equation}
+% P(\mathbf{x}) = \sum_{\mathbf{x}} \pi(\mathbf{x} \to \mathbf{x}')
+%\end{equation}
+このとき、$P(\mathbf{x})$を遷移確率pで決まるマルコフ連鎖の定常分布になっていると言う。
+マルコフ連鎖からサンプルを生成したい確率分布を$P(\mathbf{x})$とし、これを目標分布と呼ぶ。
+\par
+目標分布が定常分布になるように、マルコフ連鎖を構成することにより、マルコ
+フ連鎖を用いて目標分布からの確率標本をえることができる。
+このようなマルコフ連鎖を次のメトロポリス-ヘイスティングアルゴリズムで構
+成することができる。
+%詳細釣り合い条件
+%\begin{equation}
+%P(\mathbf{x}) \pi(\mathbf{x} \to \mathbf{x}')
+%\end{equation}
+
+\subsection{メトロポリス-ヘイスティングアルゴリズム}
+\label{sec:Metropolis}
+メトロポリス-ヘイスティングアルゴリズムを使うと、
+計算機から容易に生成する事ができない事後分布$\pi*$からの乱数を、
+事後分布を近似する提案分布q*を使う事で
+生成することができる。
+提案分布は計算機からの乱数の生成が簡単なものを選ぶ。
+
+事後分布の確率密度関数を$\pi(\mathbf{\theta}|\mathbf{x})$
+,提案分布の確率密度関数を$q(\mathbf{\theta}|\mathbf{x})$とする。
+パラメータ$\mathbf{\theta}=(\theta_{1},\theta_{2},\dots,\theta_{p})$とし、
+tステップ目のパラメータを$\mathbf{\theta}^{(t)}$で表す。
+
+\begin{quote}
+ %\begin{verbatim}
+   \begin{enumerate}
+    \item 初期値$\mathbf{\theta^{(0)}}$を決める。
+    \item $i=1,2,\dots,p$について、以下を繰り返す。	  
+	  　現在$\mathbf{\theta}_{i}^{t-1}$であるとき、次の状態$\mathbf{\theta}_{i}^{t}$の候補
+	  $\mathbf{\theta '}_{i}$を提案分布
+ $q_{i}(\mathbf{\theta}_{i}^{(t-1)},\mathbf{\theta}_{i}|\mathbf{x})$から発生させる。   
+	 \begin{eqnarray}
+	  \alpha_{i} (\mathbf{\theta}_{i}^{(t-1)},\mathbf{\theta '}|\mathbf{\theta}_{-i}^{(t)},\mathbf{x}) =
+	  \left\{
+	   \begin{array}{l}
+	    min  \{ \frac{ \pi(\mathbf{\theta}_{i}
+	     |\mathbf{\theta}_{-i}^{i},\mathbf{x}) q(\mathbf{\theta}_{i}
+	     , \mathbf{\theta}^{(t-1)})}
+	     { \pi(\mathbf{\theta}_{i}
+	     |\mathbf{\theta}_{-i}^{i},\mathbf{x}) 
+	     q(\mathbf{\theta}_{i} , \mathbf{\theta}^{(t-1)})}            
+	     ,1 \}, \
+	   
+(\pi(\mathbf{\theta}_{i}^{(t-1)}|\mathbf{\theta}_{-i}^{(t)},\mathbf{x})
+	     q_{i}(\mathbf{\theta}_{i}^{t-1}
+	     \mathbf{\theta '}_{i}|\mathbf{\theta}_{-i}^{(t)},\mathbf{x}) \ge  0) 
+	   \\ 1, \
+	     (\pi(\mathbf{\theta}_{i}^{(t-1)}|\mathbf{\theta}_{-i}^{(t)},\mathbf{x})
+	     q_{i}(\mathbf{\theta}_{i}^{t-1}
+	     \mathbf{\theta '}_{i}|\mathbf{\theta}_{-i}^{(t)},\mathbf{x}) =  0) 
+	   \end{array}
+       \right.
+	 \end{eqnarray}
+ここで、
+	  $\mathbf{\theta}_{-i}^{t}=(\mathbf{\theta}_{1}^{t},\dots,\mathbf{\theta}_{i}^{t},
+\mathbf{\theta}_{i+1}^{(t-1)},\dots,\mathbf{\theta}_{p}^{(t)})$である。
+    \item (0,1)上の一様乱数uを発生させて、
+	  \begin{eqnarray}
+	   \mathbf{\theta}_{i}^{(t)} =
+	    \left\{
+	   \begin{array}{l}
+	   \mathbf{ \theta '}_{i} ,
+	     \ u \leq \alpha_{i}
+	     (\mathbf{\theta}_{i}^{(t-1)},\mathbf{\theta '}
+	     |\mathbf{\theta}_{-i}^{(t)},\mathbf{x})のとき \\
+	    \mathbf{\theta}_{i}^{(t-1)}, 
+	     \ u \ge \alpha_{i}
+	     (\mathbf{\theta}_{i}^{(t-1)},\mathbf{\theta '}
+	     |\mathbf{\theta}_{-i}^{(t)},\mathbf{x})のとき \\
+	   \end{array}
+	     \right.
+	   \label{eq_MCMC_u} 
+	  \end{eqnarray}
+	  とする。
+    \item t を　t+1　として(2)にもどる。
+   \end{enumerate}	
+% \end{verbatim}
+\end{quote}
+　
+\subsubsection{酔歩過程}
+\label{sec:randomwalk}
+事後分布を近似するような提案分布を探す事は難しい。
+そこで、パラメータ$\mu$の新しい候補に、次の酔歩過程を提案分布として用いる事がで
+きる。
+\begin{eqnarray}
+ \mu ' &=& \mu^{t-1} + \epsilon \\ 
+\epsilon &\sim& N(0,\tau^{2}) 
+\label{eq:randomwalk}
+\end{eqnarray}
+
+%標準偏差$\tau^{2}$%\\\\

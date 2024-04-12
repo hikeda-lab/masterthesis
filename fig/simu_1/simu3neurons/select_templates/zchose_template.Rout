@@ -1,0 +1,37 @@
+
+R version 2.4.0 (2006-10-03)
+Copyright (C) 2006 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> invisible(options(echo = TRUE))
+> set.seed(99)
+> files <- list.files()
+> 
+> n = length(files) - 1
+> v <- round(runif(n)*(n-1))+1
+> 
+> chosen.files <- files[v]
+> 
+> write(chosen.files,file = "chosen_files.txt")
+> write(v,file="chosen_files_number.txt")
+> 
+> 
+> proc.time()
+[1] 2.08 0.17 2.60 0.00 0.00
+> 

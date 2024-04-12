@@ -1,0 +1,88 @@
+%シミュレーション１ template
+\begin{figure}
+	\begin{center}
+	 \includegraphics[width=15cm,keepaspectratio]{./fig/simu_1/template.eps}
+	\caption{simulation 1: それぞれのテンプレート波形}
+	\label{fig:simu_1_temps}
+	\end{center}
+\end{figure}
+
+各スパイク波形は、次のEVファイルの中から、波形を読み込んだものである。
+\begin{itemize}
+ \item 黒:04-9A\_ep013.005.ev
+ \item 赤:03-35Bep008.004.ev
+ \item 緑:0310d\_ep031.003.ev 
+\end{itemize}
+\clearpage
+%\begin{figure}[htbp]
+% \begin{tabular}{cc} %
+%  \begin{minipage}{0.5\hsize}
+%   \begin{center}
+%    \includegraphics[width=9cm]{./fig/simu_1/SNR1wavelet_trueans.eps}
+%  %  \caption{[A]}
+%%    \label{fig_simu_1_trueans}  
+%   \end{center}
+%   \caption{simu1: true labels}
+%   \label{fig_simu_1_trueans} 
+%  \end{minipage}
+%  
+%  %k-means
+%  \begin{minipage}{0.5\hsize}
+%   \begin{center}
+%    \includegraphics[width=9cm]{./fig/simu_1/SNR1wavelet_kmeans10.eps}
+%    \caption{simu1: true labels}
+%  \label{fig_simu_1_k-means} 
+%   \end{center}
+%  \end{minipage}
+% \end{tabular}
+% %\caption{[A]正しいスパイクラベルと[B]ソーティング後のスパイクラベル}
+%% \label{fig_simu_1}
+%\end{figure}
+%
+%%Wavelet Scores
+%\begin{figure}
+% \begin{center}
+%    \includegraphics[width=10cm]{./fig/simu_1/SNR1Axes_Scores.eps}
+% \end{center}
+% \caption{Score}
+% \label{simu_1_score}
+%\end{figure}
+%
+%\clearpage
+
+
+シミュレーション　1
+\begin{figure} [h] 
+ \centering
+ \hbox{
+ %true
+
+ \subfigure[正しいラベル]{
+ \label{fig_a} 
+ \resizebox{8cm}{8cm}{\includegraphics{./fig/simu_1/SNR1wavelet_trueans.eps}}}
+ %k-means
+ \subfigure[ソーティング後]{
+ \label{fig_b} 
+ %\scalebox{0.3}{\includegraphics{./fig/simu_2/SNR1wavelet_kmeans10.eps}}}
+ \resizebox{8cm}{8cm}{\includegraphics{./fig/simu_1/SNR1wavelet_kmeans10.eps}}}
+}
+\caption{simulation 1: ウェーブレット変換されたスパイク列}
+%wavelet sd
+%\subfigure[fig.c title]{
+% \label{fig_c}
+% \resizebox{10cm}{10cm}{\includegraphics{./fig/simu_1/SNR1Axes_Scores.eps}}}
+% \caption{基底関数$\phi_{1}\sim\phi_{64}$の得点}
+% \label{fig_total}
+ \label{fig:simu_1}
+\end{figure}
+
+\begin{figure}[h]
+ \begin{center}
+    \includegraphics[width=7cm,height=7cm]{./fig/simu_1/SNR1Axes_Scores.eps}
+ \end{center}
+ \caption{simulation 1: 基底関数$\phi_{1}\sim\phi_{64}$の得点}
+ \label{fig:simu_1_score}
+\end{figure}
+
+
+\clearpage

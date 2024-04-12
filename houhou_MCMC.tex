@@ -1,0 +1,149 @@
+\section{マルコフ連鎖モンテカルロ法(MCMC)によるスパイクソーティング}
+この手法は、スパイク電位の減衰にを考慮に入れたスパイクソーティングの手法である。
+この手法では、スパイク電位の減衰に関する確率モデル\eqref{eq:prob_model}を用いて、ソーティングを行う。
+最初に、初期値として、正しいかどうかはともかく、各スパイクに適当なスパイ
+クラベルを設定しておく。
+この仮定したスパイクラベルを確率モデルと比較して、修正する（正しくないと
+考えれば、ラベルを他のラベルに変更する）というステップを反復する事により、
+正しいラベルに近づけるというソーティングの手法である。
+このような手法は、Pouzatによって最初に開発された(Pouzat 2004)
+\cite{Pouzat_C_2004_improved},\cite{Pouzat_C_2004_technique}
+ただし、Pouzatの確率モデルは、スパイクの電位の減衰だけでなく、
+ISI Histgramの確率分布も考慮に入れている。また、多点電極を対象にしたもの
+である。
+本研究との違いは、本研究の確率モデルはスパイク電位の減衰のみを確率モデル
+に考慮し、この手法をウェーブレット解析によるスパイクソーティングの補完に
+使おうとする点である。
+
+\par
+この手法は、ベイズの定理とマルコフ連鎖モンテカルロ法(MCMC)によって実装さ
+れた。
+ベイズの定理とマルコフ連鎖モンテカルロ法(MCMC)については、付録に書いた。
+
+\subsection{減衰の確率モデル}
+スパイク電位の減衰モデル\fgref{spsort_idea_gensui}
+$a$はスパイクの電位を表し（スパイク波形のピーク値や波形のデータ）、
+$a_{pre}$はひとつ手前のスパイクの電位を表す。
+$\delta$、$\lambda$は定数である。
+\begin{equation}
+ a = \left( 1 - \delta \exp(-\lambda \varDelta t) \right) a_{pre}
+\label{eq:gensui}
+\end{equation}
+このモデルでは、ISIが短ければ短いほど減衰率が大きくなる。
+上式については、(Fee 1996)\cite{MS_Fee_1996}で提案されている(\fgref{fig:Fee_Model_Prob})。
+
+本研究室でも(吉川 2004)\cite{Yoshikawa_2004}において、バースト発火時において、スパ
+イク電位が減衰することが確認された。
+\par
+\eqref{eq:gensui}を基に,次のような確率モデルを作った。
+確率モデルでは、モデルから予測される電位\eqref{eq:gensui}と実際の電位との誤差が
+$a-a_{pre}(1-\delta \exp(-\lambda \varDelta t)$
+である確率の確率分布を正規分布
+$N(0,\tau^{2})$であるとした。\fgref{fig:Fee_Model_Prob}
+\begin{eqnarray}
+ P_{amp}(a|\varDelta t,\delta,\lambda)
+  &=& \frac{1}{\sqrt{2 \pi\sigma}}\exp 
+\left( -\frac{1}{2\sigma^{2}} \left|a-a_{pre}(1 - \delta \exp(-
+  \lambda \varDelta t) \right|^{2} \right)
+\label{eq:prob_model}  \\
+\sigma &=& 0.1 \left( 1 - \delta \exp(-\lambda \varDelta t) \right) a_{pre}
+\end{eqnarray}
+ここで、標準偏差$\sigma$は、モデルから予測される電位\eqref{eq:gensui}の0.1倍とした。
+%\begin{equation}
+% \sigma = 0.1 \left( 1 - \delta \exp(-\lambda \varDelta t) \right) a_{pre}
+%\end{equation}
+
+\par
+%確率モデル\eqref{eq:prob_model}から、
+$n$個のスパイク電位の値と発火時間の分かるスパイク列を
+$D=\{ \left( a_{0},\varDelta t_{i} \right),\left( a_{0},\varDelta t_{i}
+\}\right),\dots \left( a_{n},\varDelta t_{n} \right)\}$
+と表す。
+確率モデル\eqref{eq:prob_model}から、スパイク列$D$
+を観測する確率を考える。
+最初に、一つのニューロンが連続してn個のスパイクが発火している状況を考える。
+2つの前後するスパイクの確率モデルは、\eqref{eq:prob_model}で先ほど立てたから、
+連続してn個のスパイクが発火して、観測データ
+$D$
+を観測する確率$P(D|\delta,\lambda)$は
+%$C=\{ C_{1},C_{2},\dots,C_{n} \}$
+\begin{eqnarray}
+ P(D|\delta,\lambda) = \prod_{i}
+  P_{amp} \left( a_{i}|\varDelta_{i},\delta,\lambda \right)
+\label{n-ko}
+\end{eqnarray}
+となる。
+\par
+次に、$i(i=1,2,\dots)$個のニューロンから発火されるスパイク列の発火を考える。
+各i個のニューロンについて、\eqref{n-ko}と同じように考えればよいから、
+各ニューロン$i(i=1,2,\dots)$の$\delta,\lambda$を$\delta_{i},\lambda_{i}$
+として、
+\begin{eqnarray}
+ P(D|\delta,\lambda) = \prod_{各ニューロンi(i=1,2,\dots)について}　\left( \prod_{i}
+  P_{amp} \left( a_{i}|\varDelta_{i},\delta_{i},\lambda_{i} \right) \right)
+\label{eq:yuudo}
+\end{eqnarray}
+
+\par
+現実には、我々は観測データ$D$
+を知る事ができるが、各ニューロン$i(i=1,2,\dots)$の
+$\delta_{i},\lambda_{i}$については分からない。
+しかし、$\delta_{i},\lambda_{i}$に確率分布を仮定して、事前分布$P(\delta_{i})、
+P(\lambda_{i})$と設定すると、
+尤度関数は\eqref{eq:yuudo}より$P(D|\delta_{i},\lambda_{i})$だから,
+
+ベイズの定理(付録\ref{sec:Bayes_Stat})より、その事後確率は、
+\begin{eqnarray}
+  P_{post}(\delta,\lambda|D) &=&
+   \frac{P(D|\delta,\lambda)P(\delta)P(\lambda)}
+   {Z} \\
+	&\propto&
+	P(D|\delta,\lambda)P(\delta)P(\lambda)
+\label{eq:posterior}
+\end{eqnarray}
+となり、事前確率$P(\delta_{i}),P(\lambda_{i})$と尤度関数$P(D|\delta_{i},\lambda_{i})$
+から、事後確率$P_{post}(\delta_{i},\lambda_{i}|D)$が計算できる。
+ここで$Z$は規格化定数で、
+$Z=\int P(D|\delta,\lambda)P(\delta)P(\lambda) d \delta d\lambda$であるが、
+メトロポリス-ヘイスティングアルゴリズム(付録\ref{sec:Metropolis})を用いる際には、Zを計算する必要は無い。
+
+\subsection{MCMC法でのスパイクソーティング}
+事前分布として一様分布$\delta_{i},\lambda_{i}$を設定する
+($P(\delta_{i}) \subset (0.1,0.9)$,$P(\lambda_{i}) \subset (1,200)$)。
+$\delta_{i},\lambda_{i}$の提案分布として、酔歩過程(付録\ref{sec:randomwalk})
+を採用した。
+
+メトロポリス-ヘイスティングアルゴリズム(付録\ref{sec:Metropolis})を用いて、事後分布
+$P_{post}(\delta_{i},\lambda_{i}|D)$を計算する。
+実際に事後確率を計算する際には、\eqref{eq:posterior}の両辺に対数をとった、対数尤度関数
+\begin{equation}
+  \log{P_{post}(\delta_{i},\lambda_{i}|D)} =
+  \log{P(D|\delta_{i},\lambda_{i})} + \log{P(\delta_{i})} + \log{P(\lambda_{i})} + C
+\label{eq:log-posterior}
+\end{equation}
+を計算する。
+
+スパイクn個のスパイクラベル$C_{i}$と各ニューロンのパラメータについて
+\begin{equation}
+C_{i}^{(t-1)} \rightarrow \delta_{C_{i}}^{(t-1)}\rightarrow \lambda_{C_{i}}^{(t-1)}
+ \rightarrow C_{i+1}^{(t-1)} \rightarrow \dots  \rightarrow \dots
+ \rightarrow C_{i}^{(t)} \rightarrow \dots 
+\end{equation}
+とメトロポリス-ヘイスティングアルゴリズムのステップを繰り返せば、
+\eqref{eq:log-posterior}
+が収束し、そのときのスパイクラベル$C_{i}$は正しくソーティングされるはず
+である。
+\par
+MCMCによるスパイクソーティングは、統計物理におけるPottsモデルと呼ばれる磁性体
+のスピンモデルのモンテカルロ$\cdot$シミュレーションと良く似ている。
+スピンの向きをスパイクのラベルの番号に,磁性体のエネルギーが
+\eqref{eq:posterior}に対応している。
+
+\section{疑似乱数について}
+スパイクシミュレータやMCMC法では、大量に疑似乱数を生成して使用する必要がある。
+本研究では疑似乱数の生成アルゴリズムについては、"Mersenne-Twister法"を採
+用した。
+R言語では(Matsumoto and Nishimura 1998) \cite{Matsumoto_1998} の twisted GFSR 法が標準の疑似乱数生成関数となっている\cite{Manual_R_2006}。
+この手法は、周期 $2^{19937 - 1} \left( =4.315 x 10^{60001} \right))$で、すべての周期に関し 623 次元空間に均一分布する一様乱数を生成する。これは従来の線形合同法等の手法に比べ格段に長い周期である。
+乱数種は32ビット整数の624次元ベクトル＋その中の現在位置を示す整数である。
+

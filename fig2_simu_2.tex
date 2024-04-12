@@ -1,0 +1,113 @@
+
+
+%シミュレーション１ template
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=15cm,keepaspectratio]{./fig/simu_2/template.eps}
+	\caption{simulation 2: それぞれのテンプレート波形}
+	\label{fig:simu_2_temps}
+	\end{center}
+\end{figure}
+
+各スパイク波形は、次のEVファイルの中から、波形を読み込んだものである。
+\begin{itemize}
+ \item 黒:rkcy00ep050.001.ev
+ \item 赤:0318aep005.011.ev
+ \item 緑:05-9Cep031.011.ev
+\end{itemize}
+
+\clearpage
+
+
+%\begin{tabular}{|c|c|c|c|c|c|}
+%  &テンプレート& スパイクの数&$\delta$&$\lambda$&平均発火率  \\
+% ニューロン１&rkcy00ep050.001.ev&35&0.8&100&0.040  \\
+% ニューロン２&0318aep005.011.ev&35&0.8&100&0.035   \\
+% ニューロン３&05-9Cep031.011.ev&30&0.8&150&0.200    \\
+%\end{tabular} 
+
+%
+%\begin{figure}[htbp]
+% \begin{tabular}{cc} %
+%  \begin{minipage}{0.5\hsize}
+%   
+%   \begin{center}
+%    \includegraphics[width=10cm]{./fig/simu_2/SNR1wavelet_trueans.eps}
+%    \caption{simu2: true labels}
+%    \label{fig_simu_2_trueans}  
+%   \end{center}
+%
+%  \end{minipage}
+%  
+%  %k-means
+%  \begin{minipage}{0.5\hsize}
+%    \begin{center}
+%     \includegraphics[width=10cm]{./fig/simu_2/SNR1wavelet_kmeans10.eps}
+%     \caption{simu2: sorted labels}
+%     \label{fig_simu_2_k-means} 
+%  \end{center}
+%
+% \end{minipage}
+%\end{tabular}
+%
+% %\caption{[A]正しいスパイクラベルと[B]ソーティング後のスパイクラベル}
+%% \label{fig_simu_2}
+%\end{figure}
+%
+%\begin{figure}
+% \begin{center}
+%    \includegraphics[width=10cm]{./fig/simu_2/SNR1Axes_Scores.eps}
+% \end{center}
+% \caption{simu 2: Each coeff's score}
+% \label{fig_simu_1_score}
+%\end{figure}
+%
+%\clearpage
+
+%\begin{figure} [h] 
+% \centering
+% \subfigure[fig.a title]{
+% \label{fig_a} 
+% \resizebox{5cm}{6cm}{\includegraphics{./fig/simu_2/SNR1wavelet_kmeans10.eps}}}
+% \subfigure[fig.b title]{
+% \label{fig_b} 
+% \scalebox{0.3}{\includegraphics{./fig/simu_2/SNR1wavelet_kmeans10.eps}}}
+% \subfigure[fig.c title]{
+% \label{fig_c} 
+% \resizebox{5cm}{1.4cm}{\includegraphics{./fig/simu_2/SNR1wavelet_kmeans10.eps}}}
+% \caption{hoge1}
+% \label{fig_total}
+%\end{figure}
+
+シミュレーション2
+
+\begin{figure} [h] 
+ \centering
+ %true
+ \subfigure[正解]{
+ \label{fig_a} 
+ \resizebox{8cm}{8cm}{\includegraphics{./fig/simu_2/SNR1wavelet_trueans.eps}}}
+ %k-means
+ \subfigure[ソーティング後]{
+ \label{fig_b} 
+ %\scalebox{0.3}{\includegraphics{./fig/simu_2/SNR1wavelet_kmeans10.eps}}}
+ \resizebox{8cm}{8cm}{\includegraphics{./fig/simu_2/SNR1wavelet_kmeans10.eps}}}
+\caption{simulation 2: ウェーブレット変換されたスパイク列}
+%%wavelet sd
+%\subfigure[fig.c title]{
+% \label{fig_c}
+% \resizebox{10cm}{10cm}{\includegraphics{./fig/simu_2/SNR1Axes_Scores.eps}}}
+% \caption{基底関数$\phi_{1}\sim\phi_{64}$の得点}
+ \label{fig:simu_2}
+\end{figure}
+\begin{figure}[h]
+ \begin{center}
+    \includegraphics[width=7cm,height=7cm]{./fig/simu_2/SNR1Axes_Scores.eps}
+ \end{center}
+ \caption{simulation 2: 基底関数$\phi_{1}\sim\phi_{64}$の得点}
+ \label{fig:simu_1_score}
+\end{figure}
+
+%\clearpage
+
+\clearpage

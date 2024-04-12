@@ -1,0 +1,24 @@
+\section{シミュレーション１}
+３個のニューロンからのスパイク列をスパイクソーティング
+のパフォーマンスを調べた。
+
+\subsection{スパイクシミュレータ}
+スパイク波形のテンプレートを、
+\begin{itemize}
+ \item ニューロン１ rkcy00ep050.001.ev
+ \item ニューロン２ 0318aep005.011.ev
+ \item ニューロン３ 05-9Cep031.011.ev
+\end{itemize}
+から、用意する。
+
+スパイク発火シミュレータを使って、
+\begin{itemize}
+ \item ニューロン１　35個　$\delta = 1.0 ,\lambda = 200$　
+ \item ニューロン２　35個  $\delta = 1.0 ,\lambda = 150$
+ \item ニューロン３　30個  $\delta = 1.0 ,\lambda = 150$
+\end{itemize}
+と合計１００発ずつ発火した。
+それぞれの平均発火率は、$\lambda _{pois}=0.02,0.015,0.015(s)$とした。
+
+\subsection{waveletによるスパイクソーティング}
+

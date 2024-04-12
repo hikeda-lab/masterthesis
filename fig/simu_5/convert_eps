@@ -1,0 +1,9 @@
+#! /bin/sh
+
+#convert energy_history.pdf energy_history.eps
+convert hist_delta1.pdf hist_delta1.eps
+convert hist_delta2.pdf hist_delta2.eps
+convert hist_delta3.pdf hist_delta3.eps
+convert hist_lambda1.pdf hist_lambda1.eps
+convert hist_lambda2.pdf hist_lambda2.eps
+convert hist_lambda3.pdf hist_lambda3.eps

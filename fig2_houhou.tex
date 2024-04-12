@@ -1,0 +1,195 @@
+\begin{figure}
+	\begin{center}
+	\includegraphics[width=13cm,keepaspectratio,angle=270]{./fig/jikken_system.eps}
+	\caption{実験システム}
+	\label{jikken}
+	\end{center}
+\end{figure}
+実験システムは、増幅器と3台の計算機
+SPCODER（スパイクソーティング用）,
+EXPC（実験制御用）,
+VISUAL STIMULATOR（刺激提示用）,
+からなる。
+被験体にVISUAL STIMULATORから制御された視覚刺激を
+モニター(DISPLAY)から提示し、神経細胞の活動電位を単一電極で記録する。
+活動電位はアンプで約1000万倍に増幅し、300~5000Hzのバンドパスフィルタをか
+けられる。その後AD変換器で25kHzでサンプリングし、12bitに量子化された離散
+データに変換される。この時、SPCODERで離散データからスパイクが検出される。
+本研究室の実験システムでは、実験中に実験者がスパイク波形の特徴を自分の目で判別して、
+手作業にてスパイクソーティングを行っている。
+スパイクソーティングの結果と各スパイクの波形データ、
+各スパイクの発火時間はEXPCに送信され、バイナリファイルとして記録される。
+\clearpage
+
+
+
+
+%\begin{figure}
+%	\begin{center}
+%	\includegraphics[width=15cm,keepaspectratio]{./fig/03_22Bep020.002template.eps}
+%	\caption{spike}
+%	\label{spike}
+%	\end{center}
+%\end{figure}
+
+
+%スパイクソーティングのアイデア　ウェーブレット
+\begin{figure}[htbp]
+	\begin{center}
+	\includegraphics[width=15cm,keepaspectratio]{./fig/spsort_idea3.eps}
+	\caption{ウェーブレット解析によるスパイクソーティング}
+	\label{spsort_idea_wavelet}
+	\end{center}
+\end{figure}
+\clearpage
+
+%MRA
+\begin{figure}
+	\begin{center}
+	\includegraphics[height=15cm,keepaspectratio]{./fig/MRA.eps}
+	\caption{多重解像度解析}
+	\label{MRA}
+	\end{center}
+\end{figure}
+（最上段）離散ウェーブレット変換をする前の信号のデータ。信号は要素番号を
+0~63番とした、要素数64個のデータからなるものとする。（上から２段目）信号を
+level -1の多重解像度解析したデータ。（上から三段目）信号をlevel -1の多重解像度解析したデータ。
+多重解像度解析は、周波数の高い方から順に、level-1,level-2,level-3,...
+多重解像度解析を行うためには、信号のデータの要素数は2の累乗でなくてはならず、
+要素数$2^{x}$の信号データは、level-xまで多重解像度解析を行う事ができる。
+\clearpage
+
+\begin{figure}[htbp]
+
+ \begin{tabular}{cc}
+ %ドベシーの基底関数
+  \begin{minipage}{0.4\hsize}
+ %\begin{figure}
+  \begin{center}
+   \includegraphics[width=5cm,keepaspectratio]{./fig/a.eps}
+   \caption{Daunbeciesの基底関数}
+   \label{fig:Daubechies}
+  \end{center}
+  \end{minipage}
+  %スパイクソーティングのアイデア　減衰のイメージ
+  \begin{minipage}{0.4\hsize}
+ %\begin{figure}
+  \begin{center}
+   \fbox{
+   \includegraphics[width=5cm,angle=270]{./fig/gensui.eps}}
+   \caption{減衰する電位}
+   \label{spsort_idea_gensui}
+  \end{center}
+  \end{minipage}
+\\
+%スパイクソーティングのアイデア
+  \begin{minipage}{0.5\hsize}
+   %\begin{figure}
+    \begin{center}
+     \fbox{
+     \includegraphics[width=10cm,angle=270]{./fig/MCMC/master_thesis6.91ikeda14.eps}
+}
+     \caption{MCMCによるスパイクソーティング(1)}
+     \label{spsort_idea_MCMC}
+    \end{center}
+   %\end{figure}
+  \end{minipage}
+ \end{tabular}
+\end{figure}
+
+
+
+\fgref{spsort_idea_gensui} 上段は、短いISIにおけるスパイク電位の減衰。下
+ 段は、長いISIにおけるスパイク電位の減衰。スパイク電位は、ISIが短ければ
+ 短いほどスパイク電位の減衰が大きくなる。
+%\ref{chap_MCMC}章\ref{sec_MCMC}節\ref{eq_gensui}。 \\
+
+
+
+\fgref{spsort_idea_MCMC} 仮に２つのニューロン,
+ニューロン1とニューロン2から発火された5つのスパイクからのなるスパイク列があったとする。
+MCMCによるスパイクソーティングは、正しいかどうかは別として、適当なスパイクラベルを初期値と
+して仮定し、このスパイクラベルを修正していくステップを反復しながら、
+進められる。
+%\ref{eq_MCMC_u}
+\clearpage
+
+
+\begin{figure}[htbp]
+ \begin{center}
+\includegraphics[width=7cm,angle=270]{./fig/MCMC/master_thesis7.0ikeda7.eps}
+  \caption{スパイク電位の減衰の確率モデル}
+  \label{fig:Fee_Model_Prob}
+\end{center}
+\end{figure}
+
+
+\begin{figure} [h] 
+ \centering
+ %hist of delta
+ \subfigure[step = i]{
+ \label{fig_a} 
+ \resizebox{6cm}{6cm}{\includegraphics{./fig/MCMC/master_thesis7.0ikeda8.eps}}}
+ \subfigure[step = i+1]{
+ \label{fig_b} 
+ \resizebox{6cm}{6cm}{\includegraphics{./fig/MCMC/master_thesis7.0ikeda9.eps}}}
+
+  \caption{MCMCによるスパイクソーティング(2)}
+ \label{spsort_idea_MCMC2}
+\end{figure}
+
+\fgref{spsort_idea_MCMC2}(a) 現在、step=iとして、４番目のスパイクのラベ
+ルを変更するか、しないのかを選択しているとする。
+今調べているスパイクと同じスパイクラベルを持つ、一つ手前のスパイクから今調
+べているスパイクの減衰率を調べる。
+減衰率が確率的に妥当でないな場合は、ラベルを変更する。
+step=i+1として、次のスパイクを調べる。
+\par
+\fgref{spsort_idea_MCMC2}(b) 現在、step=i+1として、5番目のスパイクのラベ
+ルを変更するか、しないのかを選択しているとする。
+今調べているスパイクと同じスパイクラベルを持つ、一つ手前のスパイクから今調
+べているスパイクの減衰率を調べる。
+減衰率が確率的に妥当な場合は、ラベルを変更しない。
+このように順々に全てのスパイクを調べていく。
+\clearpage
+
+%\begin{figure}[htbp]
+% \begin{tabular}{cc}
+%%スパイクソーティングのアイデア  Prob Model
+%  \begin{minipage}{0.4\hsize}
+%   %\begin{figure}
+%    \begin{center}
+%      \includegraphics[width=7cm]{./fig/MCMC/gensui4.eps
+%     \caption{}
+%     \label{fig:Fee_Model_Prob}
+%    \end{center}
+%   %\end{figure}
+%  \end{minipage}
+%
+%  %スパイクソーティングのアイデア　Fee model
+%  \begin{minipage}{0.4\hsize}
+% %\begin{figure}
+%  \begin{center}
+% 
+%   \includegraphics[width=7cm]{./fig/MCMC/gensui3.eps}
+%   \caption{}
+%   \label{fig:Fee_Model}
+%  \end{center}
+% %\end{figure}
+%  \end{minipage}
+% \end{tabular}
+%\end{figure}
+
+
+%%スパイクソーティングのアイデア
+%\begin{figure}
+%	\begin{center}
+%\fbox{
+%	\includegraphics[width=15cm,keepaspectratio]{./fig/spsort_idea2.eps}
+%}
+%        \caption{spike sorting}
+%	\label{spsort_idea_MCMC}
+%	\end{center}
+%\end{figure}
+%
+%\clearpage

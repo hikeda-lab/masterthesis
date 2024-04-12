@@ -1,0 +1,168 @@
+
+%----------------------------------------------------------------------
+%プリアンブルの指定です．
+%11ptでjreportクラスを使用しています．
+%ですから，一番大きな見出しがchapterになります．
+%注意してください．
+%----------------------------------------------------------------------
+\documentclass[a4paper,11pt]{jreport}
+\usepackage{masterthesis}
+%\usepackage{showkeys}%推敲用
+\usepackage{amsmath,amssymb}
+\usepackage{wrapfig}
+\usepackage{subfigure}
+
+%
+% for subfigure
+%
+\renewcommand{\subfigtopskip}{2pt}
+\renewcommand{\subfigbottomskip}{1pt}
+\renewcommand{\subfigcapskip}{1pt}
+\renewcommand{\subcapsize}{\scriptsize}
+
+
+
+\usepackage{txfonts}
+%%%hyperref
+\AtBeginDvi{\special{pdf:tounicode EUC-UCS2}}
+\usepackage[dvipdfm,%
+   bookmarks=true,bookmarksnumbered=true,bookmarkstype=toc]{hyperref}
+
+%% hyperref-dvipdfm fix - make bookmarks working with Preview.app
+\makeatletter
+\def\@pdfm@dest#1{%
+  \Hy@SaveLastskip
+  \@pdfm@mark{dest (#1) [@thispage /\@pdfview\space @xpos @ypos null]}%
+  \Hy@RestoreLastskip
+}
+\makeatother
+
+%\def\Vec#1{\mbox{\boldmath $#1$}}%ベクトル（太字）
+
+\pagestyle{plain}
+\makeatletter
+\def\@cite#1{$\m@th^{\hbox{\@ove@rcfont #1）}}$}
+\makeatother
+\begin{document}
+
+%----------------------------------------------------------------------
+% 表紙
+%----------------------------------------------------------------------
+
+\begin{toppage}
+
+% 修士論文のタイトル
+% 改行を入れる場合には \\ を入力
+% 第2引数はレイアウト調整のためのパラメータ．タイトルと氏名までの間隔を
+% 表している．推奨値は以下の通り．
+%   タイトルが1行の時：9
+%   タイトルが2行の時：8
+%   タイトルが3行の時：7
+
+\title{細胞外記録法における単一電極による\\スパイクソーティング}{8}
+%\title{タイトルが2行の時にはこうなる\\修士論文スタイルファイルのサンプル}{8}
+
+% 学籍番号・著者氏名
+% 名字と名前の間に全角スペースをいれること
+% \author{ 入学年 }{ 番号（専攻内） }{ 氏名 }
+
+\author{2006}{E0167804}{池田　孟}
+
+% 指導教官
+\professor{大澤　五住教授}
+
+% 提出日
+\date{2007}{2}{19}
+
+\end{toppage}
+
+%----------------------------------------------------------------------
+% abstract
+%----------------------------------------------------------------------
+\begin{abstract}
+\input{youshi2}
+\end{abstract}
+
+
+
+%----------------------------------------------------------------------
+% 目次
+%----------------------------------------------------------------------
+\contents
+
+
+%----------------------------------------------------------------------
+% 本文
+%----------------------------------------------------------------------
+%\chapter{はじめに}
+%\input{hajimeni}
+%\clearpage
+
+
+\chapter{導入}
+%\chapter{introduction}
+\input{dounyu}
+
+
+\chapter{方法}
+\input{houhou}
+\input{houhou_sim}
+\input{houhou_wavelet}
+\input{houhou_MCMC}
+
+\chapter{スパイクソーティングシミュレーション}
+\input{simu_1}
+\input{simu_2}
+\input{simu_3}
+\input{simu_4}
+
+\chapter{結果}
+\input{kekka_simu_1}
+\input{kekka_simu_2}
+\input{kekka_simu_3}
+\input{kekka_simu_4}
+
+
+\clearpage
+\chapter{考察}
+\input{kosatsu}
+
+\chapter{付録}
+\label{chap:huroku}
+\input{wavelet}
+\input{MCMC}
+%----------------------------------------------------------------------
+%謝辞
+%----------------------------------------------------------------------
+\begin{gratitude}
+本研究は大阪大学大学院生命機能研究科脳神経工学講座大澤研究室で行われた。
+本研究を遂行するにあたり，多大なる御指導そして御協力を賜りました主査の大澤五住教授に心より感謝します。副査の菊池誠教授、並びに貴重な助言をしてくださった小林康助教授、田中宏喜助手、畑中信技官に深く感謝します。最後に様々な助言、協力を頂いた真田さんをはじめとする大澤研究室の皆様に、この場を借りて感謝の意を表します。
+\end{gratitude}
+
+%----------------------------------------------------------------------
+%参考文献の記入欄です．
+%----------------------------------------------------------------------
+%\bibliographystyle{junsrt}
+\bibliographystyle{jplain}
+%\bibliography{pdga-jun}
+\bibliography{spike_sorting2}
+%----------------------------------------------------------------------
+%以下，図表のためのページです．
+%再びページ番号を振り直しています．
+%論文が完成すると，本文と図表の間に色紙を挟みます．
+%----------------------------------------------------------------------
+
+% 付図・付表のリストを作成する
+\appendixpage{1}
+
+%----------------------------------------------------------------------
+%図の張り込み例です．
+%----------------------------------------------------------------------
+\input{fig2}
+
+\input{tb_houhou2}
+\input{tb_simu2}
+\input{tb_kekka2}
+
+\end{document}
+

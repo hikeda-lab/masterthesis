@@ -1,0 +1,25 @@
+\section{結果　シミュレーション３}
+\tbref{tb:simu_3a}に結果を記す。
+\tbref{tb:simu_3a}(a)に20個のスパイク$\mathbf{S}_{1} \sim
+\mathbf{S}_{2}$
+について、初期状態とソーティング後の違い示した。
+\tbref{tb:simu_3a}(b)に正解のスパイクラベルを
+\tbref{tb:simu_3a}(c)にソーティング後の結果を示した。
+示した。
+\eqref{eq:log-posterior}の値をスパイクラベルを一つ調べるごとに記録した。
+\fgref{fig:simu_3_log-posterior}には、
+対数尤度\eqref{eq:log-posterior}
+の全10000ステップの遷移を描いた。
+また\fgref{fig:sim3_histgram}には、
+全ステップの後半１割(9001$\sim$10000)の
+パラメータ
+$\delta_{i=1,2,3},\lambda_{i=1,2,3}$の標本から、それぞれの事後分布のヒストグラムを作った。
+
+%\par
+%\tbref{tb:simu_3a}(b)と\tbref{tb:simu_3a}(c)を見比べると、
+%スパイクラベル1がクラスター2に、スパイクラベル2がクラスター3に
+%、スパイクラベル3がクラスター1に対応していると解釈できる。
+%\tbref{tb:simu_3a}は、正しくソーティングできていれば、
+%表\ref{tb:simu_3a}(a)のように数字が対角線上に並ぶように、
+%列をスパイクラベルとクラスターに対応して、入れ替えておいた。
+このシミュレーションは、\tbref{tb:machines}計算機[B]で$10753.19(s)$かかった。
